@@ -32,7 +32,7 @@ class RegisterPharmacist extends \yii\db\ActiveRecord
     {
         return [
             [['dori_id', 'count', 'date', 'plan_id'], 'integer'],
-            // [['type'], 'required'],
+            [['plan_id','count','date','dori_id','type'], 'required'],
             [['comment'], 'string', 'max' => 255],
             [['type'], 'string', 'max' => 11],
         ];

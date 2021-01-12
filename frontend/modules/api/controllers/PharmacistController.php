@@ -125,29 +125,36 @@ class PharmacistController extends Controller
     {
         $request=Yii::$app->request;
         $response=Yii::$app->response;
-        $response->statusCode = 405;
         $token=$request->headers->get('token');
         $pharmacist=Pharmacist::findToken($token);
         $error=true;
         $data=[];
         $message='';
+        $xato=0;
         if($pharmacist!=null && $request->isPost){
            foreach($request->post() as $val){
-               $datas=new Plan();
-               $datas->pharmacist_id=$pharmacist->id;
-               $datas->dori_id=$val['dori_id'];
-               $datas->count=$val['count'];
-               $datas->date=strtotime('now');
-               $datas->save();
-               $pharmacist->plan_id=$datas->id;
-               $pharmacist->save();
+               if(Plan::findOne(['dori_id'=>$request->post('dori_id'),'pharmacist_id'=>$pharmacist->id,'date'=>date('Ym')])!=null){       
+                $xato=1;
+                $message='Bunday reja mavjud';
+               }else{
+                $datas=new Plan();
+                $datas->pharmacist_id=$pharmacist->id;
+                $datas->dori_id=$val['dori_id'];
+                $datas->count=$val['count'];
+                $datas->date=date('Ym');
+                $datas->save();
+                if($data->errors!=null){
+                    $xata=1;
+                    $message=$dat->errors;
+                }
+               }
            }
-           $response->statusCode=200;
-           $error=false;
-           $message='Success';
+           if($xata==0){
+            $error=false;
+            $message='Success';
+           }
         }
         else{
-            $response->statusCode=200;
             $message='Bunday token mavjud emas';
         }
         return ['erros'=>$error,'message'=>$message,'data'=>$data];
@@ -202,7 +209,7 @@ class PharmacistController extends Controller
            $register->dori_id=$request->post('dori_id');
            $register->count=$request->post('count');    
            $register->type='kirim';
-           $register->plan_id=$pharmacist->plan_id;
+           $register->plan_id=Plan::findOne(['dori_id'=>$register->dori_id,'pharmacist_id'=>$pharmacist->id]);
            $register->save();
            if($register->errors==null){
                $error=false;
@@ -232,7 +239,7 @@ class PharmacistController extends Controller
            $register->dori_id=$request->post('dori_id');
            $register->count=-$request->post('count');    
            $register->type='chiqim';
-           $register->plan_id=$pharmacist->plan_id;
+           $register->plan_id=Plan::findOne(['dori_id'=>$register->dori_id,'pharmacist_id'=>$pharmacist->id]);
            $register->save();
            if($register->errors==null){
                $error=false;
