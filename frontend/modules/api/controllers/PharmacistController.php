@@ -6,6 +6,7 @@ use yii\rest\Controller;
 use common\models\Pharmacist;
 use common\models\RegisterPharmacist;
 use common\models\Plan;
+use common\models\Planapi;
 use common\models\Dori;
 use common\models\Firm;
 use common\models\DoriApi;
@@ -169,8 +170,30 @@ class PharmacistController extends Controller
         $data=[];
         $message='';
         if($pharmacist!=null){
-           $cure=DoriApi::find()->where(['firm_id'=>$id])->all();
-           $data=$cure;
+            $error=false;
+            $message='Success';
+            $cure=DoriApi::find()->where(['firm_id'=>$id])->all();
+            $data=$cure;
+        }
+        else{
+            $message='Token xato';
+        }
+        return ['erros'=>$error,'message'=>$message,'data'=>$data];
+    }
+    public function actionGetplan()
+    {
+        $request=Yii::$app->request;
+        $response=Yii::$app->response;
+        $token=$request->headers->get('token');
+        $pharmacist=Pharmacist::findToken($token);
+        $error=true;
+        $data=[];
+        $message='';
+        if($pharmacist!=null){
+            $error=false;
+            $message='Success';
+           $plan=Planapi::find()->where(['pharmacist_id'=>$pharmacist->id,'date'=>date('Ym')])->all();
+           $data=$plan;
         }
         else{
             $message='Token xato';
