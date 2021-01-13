@@ -8,6 +8,8 @@ use backend\models\DoriSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
+
 
 /**
  * DoriController implements the CRUD actions for Dori model.
@@ -66,8 +68,14 @@ class DoriController extends Controller
     {
         $model = new Dori();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $fayl = UploadedFile::getInstance($model,'foto');
+            if($fayl!=null){
+                $fayl->saveAs('../web/image/'.$fayl->baseName.".".$fayl->extension);
+                $model->foto=$fayl->baseName.".".$fayl->extension;     
+            }
+            $model->save();
+            return $this->redirect('index');
         }
 
         return $this->render('create', [
@@ -75,33 +83,23 @@ class DoriController extends Controller
         ]);
     }
 
-    /**
-     * Updates an existing Dori model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $fayl = UploadedFile::getInstance($model,'foto');
+            if($fayl!=null){
+                $fayl->saveAs('../web/image/'.$fayl->baseName.".".$fayl->extension);
+                $model->foto=$fayl->baseName.".".$fayl->extension;     
+            }
+            $model->save();
+            return $this->redirect('index');
         }
-
         return $this->render('update', [
             'model' => $model,
         ]);
     }
-
-    /**
-     * Deletes an existing Dori model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
