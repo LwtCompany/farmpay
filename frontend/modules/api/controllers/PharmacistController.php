@@ -133,8 +133,8 @@ class PharmacistController extends Controller
         $message='';
         $xato=0;
         if($pharmacist!=null && $request->isPost){
-           foreach($request->post() as $val){
-               if(Plan::findOne(['dori_id'=>$request->post('dori_id'),'pharmacist_id'=>$pharmacist->id,'date'=>date('Ym')])!=null){       
+           foreach($request->post('plan') as $val){
+               if(Plan::findOne(['dori_id'=>$val['dori_id'],'pharmacist_id'=>$pharmacist->id,'date'=>date('Ym')])!=null){       
                 $xato=1;
                 $message='Bunday reja mavjud';
                }else{
@@ -144,13 +144,13 @@ class PharmacistController extends Controller
                 $datas->count=$val['count'];
                 $datas->date=date('Ym');
                 $datas->save();
-                if($data->errors!=null){
-                    $xata=1;
+                if($datas->errors!=null){
+                    $xato=1;
                     $message=$dat->errors;
                 }
                }
            }
-           if($xata==0){
+           if($xato==0){
             $error=false;
             $message='Success';
            }

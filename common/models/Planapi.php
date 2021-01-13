@@ -21,7 +21,10 @@ class Planapi extends Plan
     public function fields(){
         return [
             'id',
-            'dori_id',
+            // 'dori_id',
+            'dori'=>function($data){
+                return Dori::find()->where(['id'=>$data->dori_id])->all();
+            },
             'count',
             'sold'=>function($data){
                 return RegisterPharmacist::find()->where(['plan_id'=>$data->id,'type'=>'chiqim','date'=>date('Ym')])->sum('count');
