@@ -62,7 +62,7 @@ class PharmacistController extends Controller
             $response->statusCode=200;
             $message='Method post bolishi kerak';
         }
-        return ['erros'=>$error,'message'=>$message,'data'=>$data];
+        return ['error'=>$error,'message'=>$message,'data'=>$data];
     }
     public function actionLogin()
     {
@@ -92,7 +92,7 @@ class PharmacistController extends Controller
             $response->statusCode=200;
             $message='Method post bolishi kerak';
         }
-        return ['erros'=>$error,'message'=>$message,'data'=>$data];
+        return ['error'=>$error,'message'=>$message,'data'=>$data];
     }
     public function actionRegisterPhone($phone)
     {
@@ -120,7 +120,7 @@ class PharmacistController extends Controller
             $response->statusCode=200;
             $message='Method xato';
         }
-        return ['erros'=>$error,'message'=>$message,'data'=>$data];
+        return ['error'=>$error,'message'=>$message,'data'=>$data];
     }
     public function actionSetPlan()
     {
@@ -158,7 +158,7 @@ class PharmacistController extends Controller
         else{
             $message='Bunday token mavjud emas';
         }
-        return ['erros'=>$error,'message'=>$message,'data'=>$data];
+        return ['error'=>$error,'message'=>$message,'data'=>$data];
     }
     public function actionCurelist($id)
     {
@@ -178,7 +178,7 @@ class PharmacistController extends Controller
         else{
             $message='Token xato';
         }
-        return ['erros'=>$error,'message'=>$message,'data'=>$data];
+        return ['error'=>$error,'message'=>$message,'data'=>$data];
     }
     public function actionGetplan()
     {
@@ -198,7 +198,7 @@ class PharmacistController extends Controller
         else{
             $message='Token xato';
         }
-        return ['erros'=>$error,'message'=>$message,'data'=>$data];
+        return ['error'=>$error,'message'=>$message,'data'=>$data];
     }
     public function actionFirmlist()
     {
@@ -210,12 +210,13 @@ class PharmacistController extends Controller
         $data=[];
         $message='';
         if($pharmacist!=null){
+            $error=false;
            $data=Firm::find()->all();
         }
         else{
             $message='Token xato';
         }
-        return ['erros'=>$error,'message'=>$message,'data'=>$data];
+        return ['error'=>$error,'message'=>$message,'data'=>$data];
     }
     public function actionIncome()
     {
@@ -245,7 +246,7 @@ class PharmacistController extends Controller
         else{
             $message='Token xato';
         }
-        return ['erros'=>$error,'message'=>$message,'data'=>$data];
+        return ['error'=>$error,'message'=>$message,'data'=>$data];
     }
     public function actionOutlay()
     {
@@ -275,6 +276,6 @@ class PharmacistController extends Controller
         else{
             $message='Token xato';
         }
-        return ['erros'=>$error,'message'=>$message,'data'=>$data];
+        return ['error'=>$error,'message'=>$message,'data'=>$data];
     }
 }
