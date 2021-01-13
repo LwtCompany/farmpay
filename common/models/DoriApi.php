@@ -18,7 +18,9 @@ class DoriApi extends Dori
         return [
             'id',
             'name',
-            'bonus',
+            'bonus'=>function($data){
+                    return (double)$data->bonus;
+                },
             'etalon',
             // 'tarif'=>function($data){
             //     return $data->getTarif()->select(['name'])->one();

@@ -33,7 +33,7 @@ if (class_exists('ramosisw\CImaterial\web\MaterialAsset')) {
 
 	<div class="wrapper">
 
-	    <div class="sidebar" data-color="purple" data-image="../assets/img/sidebar-1.jpg">
+	    <div class="sidebar" data-color="blue" data-image="../assets/img/sidebar-1.jpg">
 			<!--
 		        Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
 
@@ -42,16 +42,22 @@ if (class_exists('ramosisw\CImaterial\web\MaterialAsset')) {
 
 			<div class="logo">
 				<a href="http://www.creative-tim.com" class="simple-text">
-					Creative Tim
+					Pharmpay
 				</a>
 			</div>
 
 	    	<div class="sidebar-wrapper">
 	            <ul class="nav">
 	                <li class="active">
-	                    <a href="dashboard.html">
+	                    <a href="<?=Yii::$app->HomeUrl?>">
 	                        <i class="material-icons">dashboard</i>
-	                        <p>Dashboard</p>
+	                        <p>Asoosiy oyna</p>
+	                    </a>
+	                </li>
+					<li>
+	                    <a href="<?=Yii::$app->HomeUrl?>dori">
+	                        <i class="material-icons">local_pharmacy</i>
+	                        <p>Dorilar</p>
 	                    </a>
 	                </li>
 	                <li>
@@ -60,12 +66,7 @@ if (class_exists('ramosisw\CImaterial\web\MaterialAsset')) {
 	                        <p>User Profile</p>
 	                    </a>
 	                </li>
-	                <li>
-	                    <a href="table.html">
-	                        <i class="material-icons">content_paste</i>
-	                        <p>Table List</p>
-	                    </a>
-	                </li>
+	                
 	                <li>
 	                    <a href="typography.html">
 	                        <i class="material-icons">library_books</i>
@@ -96,11 +97,18 @@ if (class_exists('ramosisw\CImaterial\web\MaterialAsset')) {
 	                        <p>Upgrade to PRO</p>
 	                    </a>
 	                </li>
-	            </ul>
+				</ul>
+				<footer class="footer">
+				<div class="container-fluid">
+					<!-- <p class="copyright pull-right"> -->
+						&copy; <script>document.write(new Date().getFullYear())</script> <a href="http://www.isti.uz">Biznes dasturlash markazi</a>
+					<!-- </p> -->
+				</div>
+				</footer>
 	    	</div>
 	    </div>
 
-	    <div class="main-panel">
+	    <div class="main-panel" >
 			<nav class="navbar navbar-transparent navbar-absolute">
 				<div class="container-fluid">
 					<div class="navbar-header">
@@ -110,7 +118,6 @@ if (class_exists('ramosisw\CImaterial\web\MaterialAsset')) {
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="#">Material Dashboard</a>
 					</div>
 					<div class="collapse navbar-collapse">
 						<ul class="nav navbar-nav navbar-right">
@@ -154,40 +161,9 @@ if (class_exists('ramosisw\CImaterial\web\MaterialAsset')) {
 					</div>
 				</div>
 			</nav>
-
-            <?= $content ?>
-
-			<footer class="footer">
-				<div class="container-fluid">
-					<nav class="pull-left">
-						<ul>
-							<li>
-								<a href="#">
-									Home
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									Company
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									Portfolio
-								</a>
-							</li>
-							<li>
-								<a href="#">
-								   Blog
-								</a>
-							</li>
-						</ul>
-					</nav>
-					<p class="copyright pull-right">
-						&copy; <script>document.write(new Date().getFullYear())</script> <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
-					</p>
-				</div>
-			</footer>
+			<div>
+			<?= $content ?>
+			</div>
 		</div>
 	</div>
 

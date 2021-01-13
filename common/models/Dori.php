@@ -30,7 +30,7 @@ class Dori extends \yii\db\ActiveRecord
         return [
             [['firm_id'], 'integer'],
             [['bonus'], 'number'],
-            [['name'], 'string', 'max' => 200],
+            [['name','foto'], 'string'],
         ];
     }
 
@@ -44,6 +44,7 @@ class Dori extends \yii\db\ActiveRecord
             'name' => 'Name',
             'firm_id' => 'Firm ID',
             'bonus' => 'Bonus',
+            'foto' => 'Foto',
         ];
     }
     public function getEtalon()
