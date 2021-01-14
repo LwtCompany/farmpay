@@ -17,16 +17,37 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('+', ['create'], ['class' => 'btn btn-info']) ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        // 'filterModel' => $searchModel,
         'summary'=>'',
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'name',
-            'firm_id',
-            'bonus',
-            'foto',
+            ['attribute'=>'name',
+            'format'=>"raw",
+            'value'=>function($data)
+            {
+                return Html::a($data->name,['update','id'=>$data->id]);
+            }
+            ],
+            ['attribute'=>'bonus',
+            'format'=>"raw",
+            'value'=>function($data)
+            {
+                return Html::a($data->bonus,['update','id'=>$data->id]);
+            }
+            ],
+            ['attribute'=>'firm_id',
+            'format'=>"raw",
+            'value'=>function($data)
+            {
+                return Html::a($data['firm']->name,['update','id'=>$data->id]);
+            }
+            ],
+            ['attribute'=>'foto',
+            'format'=>"raw",
+            'value'=>function($data)
+            {
+                return "<img src='../admin/image/".$data->foto."' style='width:100px;'>";
+            }
+            ],
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

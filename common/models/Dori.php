@@ -30,7 +30,7 @@ class Dori extends \yii\db\ActiveRecord
         return [
             [['firm_id'], 'integer'],
             [['bonus'], 'number'],
-            [['name','foto'], 'string'],
+            [['name'], 'string'],
         ];
     }
 
@@ -50,5 +50,9 @@ class Dori extends \yii\db\ActiveRecord
     public function getEtalon()
     {
         return $this->hasMany(Etalon::className(), ['dori_id' => 'id']);
+    }
+    public function getFirm()
+    {
+        return $this->hasOne(Firm::className(), ['id' => 'firm_id']);
     }
 }

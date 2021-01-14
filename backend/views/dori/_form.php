@@ -14,11 +14,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'firm_id')->textInput() ?>
+    <?= $form->field($model, 'firm_id')->Input(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'bonus')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'foto')->fileInput(['maxlength' => true, 'multiple' => false, 'accept' => 'web/image/*']) ?>
+    <?= $form->field($model, 'foto')->fileInput(['maxlength' => true, 'multiple' => false, 'accept' => 'image/*']) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Saqlash', ['class' => 'btn btn-info']) ?>
