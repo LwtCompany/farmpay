@@ -21,7 +21,9 @@ use yii\helpers\ArrayHelper;
             )
 ?>
     <?= $form->field($model, 'bonus')->textInput(['maxlength' => true]) ?>
-
+    <pre>
+    <?php print_r($model);?>
+    </pre>
     <?= $form->field($model, 'foto')->fileInput(['maxlength' => true, 'multiple' => false, 'accept' => 'image/*']) ?>
     <img src="../image/<?=$model->foto?>" alt="" style='150px;'>
 

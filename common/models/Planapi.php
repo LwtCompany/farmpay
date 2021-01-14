@@ -26,6 +26,10 @@ class Planapi extends Plan
                 $dori=DoriApi::findOne($data->dori_id);
                 return $dori['name'];
             },
+            'foto'=>function($data){
+                $dori=DoriApi::findOne($data->dori_id);
+                return $dori['foto'];
+            },
             'dori_id',
             'count',
             'sold'=>function($data){
