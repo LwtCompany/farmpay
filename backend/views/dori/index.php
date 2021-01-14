@@ -45,7 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'format'=>"raw",
             'value'=>function($data)
             {
-                return "<img src='../admin/image/".$data->foto."' style='width:100px;'>";
+                return "<img src='../image/".$data->foto."' style='width:100px;'>";
             }
             ],
             ['class' => 'yii\grid\ActionColumn'],

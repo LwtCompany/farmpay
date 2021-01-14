@@ -18,6 +18,9 @@ class DoriApi extends Dori
         return [
             'id',
             'name',
+            'foto'=>function($data){
+                return '83.221.167.17:60011/farmpay/admin/image/'.$data->foto;
+            },
             'bonus'=>function($data){
                     return (double)$data->bonus;
                 },
