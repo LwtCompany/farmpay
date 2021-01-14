@@ -234,7 +234,7 @@ class PharmacistController extends Controller
            $register->dori_id=$request->post('dori_id');
            $register->count=$request->post('count');    
            $register->type='kirim';
-           $register->plan_id=Plan::findOne(['dori_id'=>$register->dori_id,'pharmacist_id'=>$pharmacist->id])->id;
+           $register->plan_id=$request->post('plan_id');
            $register->save();
            if($register->errors==null){
                $error=false;
@@ -264,7 +264,7 @@ class PharmacistController extends Controller
            $register->dori_id=$request->post('dori_id');
            $register->count=-$request->post('count');    
            $register->type='chiqim';
-           $register->plan_id=Plan::findOne(['dori_id'=>$register->dori_id,'pharmacist_id'=>$pharmacist->id])->id;
+           $register->plan_id=$request->post('plan_id');
            $register->save();
            if($register->errors==null){
                $error=false;
