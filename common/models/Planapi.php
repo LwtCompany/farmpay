@@ -24,11 +24,15 @@ class Planapi extends Plan
             // 'dori_id',
             'dori'=>function($data){
                 $dori=DoriApi::findOne($data->dori_id);
-                return $dori;
+                return $dori['name'];
             },
             'count',
             'sold'=>function($data){
-                return RegisterPharmacist::find()->where(['plan_id'=>$data->id,'type'=>'chiqim','date'=>date('Ym')])->sum('count');
+                $sold=RegisterPharmacist::find()->where(['plan_id'=>$data->id,'type'=>'chiqim','date'=>date('Ym')])->sum('count');
+                if($sold==null){
+                    $sold=0;
+                }
+                return $sold;
             },
         ];
     }

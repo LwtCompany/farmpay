@@ -142,6 +142,7 @@ class PharmacistController extends Controller
                 $datas->pharmacist_id=$pharmacist->id;
                 $datas->dori_id=$val['dori_id'];
                 $datas->count=$val['count'];
+                $datas->firm_id=$val['firm_id'];
                 $datas->date=date('Ym');
                 $datas->save();
                 if($datas->errors!=null){
@@ -180,7 +181,7 @@ class PharmacistController extends Controller
         }
         return ['error'=>$error,'message'=>$message,'data'=>$data];
     }
-    public function actionGetplan()
+    public function actionGetplan($id)
     {
         $request=Yii::$app->request;
         $response=Yii::$app->response;
@@ -192,7 +193,7 @@ class PharmacistController extends Controller
         if($pharmacist!=null){
             $error=false;
             $message='Success';
-           $plan=Planapi::find()->where(['pharmacist_id'=>$pharmacist->id,'date'=>date('Ym')])->all();
+           $plan=Planapi::find()->where(['pharmacist_id'=>$pharmacist->id,'date'=>date('Ym'),'firm_id'=>$id])->all();
            $data=$plan;
         }
         else{

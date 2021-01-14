@@ -29,7 +29,7 @@ class Plan extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['pharmacist_id', 'dori_id', 'count', 'date'], 'integer'],
+            [['pharmacist_id', 'dori_id', 'count', 'date','firm_id'], 'integer'],
         ];
     }
 
@@ -44,6 +44,8 @@ class Plan extends \yii\db\ActiveRecord
             'dori_id' => 'Dori ID',
             'count' => 'Count',
             'date' => 'Date',
+            'firm' => 'Firma',
+
         ];
     }
 }
