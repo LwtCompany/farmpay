@@ -30,6 +30,13 @@ class Planapi extends Plan
                 $dori=DoriApi::findOne($data->dori_id);
                 return $dori['foto'];
             },
+            'residue'=>function($data){
+                $sold=RegisterPharmacist::find()->where(['plan_id'=>$data->id])->andWhere(['<','date',strtotime('now')])->sum('count');
+                if($sold==null){
+                    $sold=0;
+                }
+                return $sold;
+            },
             'dori_id',
             'count',
             'sold'=>function($data){
