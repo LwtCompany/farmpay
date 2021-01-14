@@ -40,7 +40,7 @@ class Planapi extends Plan
             'dori_id',
             'count',
             'sold'=>function($data){
-                $sold=RegisterPharmacist::find()->where(['plan_id'=>$data->id,'type'=>'chiqim'])->andWhere(['<','date',strtotime('now')])->sum('count');
+                $sold=RegisterPharmacist::find()->where(['plan_id'=>$data->id,'type'=>'chiqim'])->andWhere(['>','date',strtotime(date('Y-m-01 00:00:00'))])->andWhere(['<','date',strtotime('now')])->sum('count');
                 if($sold==null){
                     $sold=0;
                 }else{
