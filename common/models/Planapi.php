@@ -28,9 +28,11 @@ class Planapi extends Plan
             },
             'count',
             'sold'=>function($data){
-                $sold=RegisterPharmacist::find()->where(['plan_id'=>$data->id,'type'=>'chiqim','date'=>date('Ym')])->sum('count');
+                $sold=RegisterPharmacist::find()->where(['plan_id'=>$data->id,'type'=>'chiqim'])->andWhere(['<','date',strtotime('now')])->sum('count');
                 if($sold==null){
                     $sold=0;
+                }else{
+                    $sold=$sold * -1;
                 }
                 return $sold;
             },

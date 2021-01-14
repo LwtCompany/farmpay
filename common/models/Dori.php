@@ -41,8 +41,8 @@ class Dori extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'firm_id' => 'Firm ID',
+            'name' => 'Nomi',
+            'firm_id' => 'Firm',
             'bonus' => 'Bonus',
             'foto' => 'Foto',
         ];
