@@ -70,11 +70,10 @@ class DoriController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
             $fayl = UploadedFile::getInstance($model,'foto');
-            // if($fayl!=null){
-
-                $fayl->saveAs('web/image/'.$fayl->baseName.".".$fayl->extension);
+            if($fayl!=null){
+                $fayl->saveAs('image/'.$fayl->baseName.".".$fayl->extension);
                 $model->foto=$fayl->baseName.".".$fayl->extension;     
-            // }
+            }
             $model->save();
             return $this->redirect('index');
         }

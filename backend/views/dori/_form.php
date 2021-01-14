@@ -23,6 +23,7 @@ use yii\helpers\ArrayHelper;
     <?= $form->field($model, 'bonus')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'foto')->fileInput(['maxlength' => true, 'multiple' => false, 'accept' => 'image/*']) ?>
+    <img src="../image/<?=$model->foto?>" alt="" style='150px;'>
 
     <div class="form-group">
         <?= Html::submitButton('Saqlash', ['class' => 'btn btn-info']) ?>
