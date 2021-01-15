@@ -48,4 +48,13 @@ class Plan extends \yii\db\ActiveRecord
 
         ];
     }
+    public function Sold($data){
+        $sold=RegisterPharmacist::find()->where(['plan_id'=>$data->id,'type'=>'chiqim'])->andWhere(['>','date',strtotime(date('Y-m-01 00:00:00'))])->andWhere(['<','date',strtotime('now')])->sum('count');
+        if($sold==null){
+            $sold=0;
+        }else{
+            $sold=$sold * -1;
+        }
+        return $sold;
+    }
 }
