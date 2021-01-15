@@ -28,7 +28,7 @@ class Planapi extends Plan
             },
             'foto'=>function($data){
                 $dori=DoriApi::findOne($data->dori_id);
-                return '83.221.167.17:60011/farmpay/admin/image/'.$dori['foto'];
+                return 'http://83.221.167.17:60011/farmpay/admin/image/'.$dori['foto'];
             },
             'residue'=>function($data){
                 $sold=RegisterPharmacist::find()->where(['plan_id'=>$data->id])->andWhere(['<','date',strtotime('now')])->sum('count');
