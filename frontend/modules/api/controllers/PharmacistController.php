@@ -5,6 +5,7 @@ namespace frontend\modules\api\controllers;
 use yii\rest\Controller;
 use common\models\Pharmacist;
 use common\models\RegisterPharmacist;
+use common\models\RegisterPharmacistapi;
 use common\models\Plan;
 use common\models\Planapi;
 use common\models\Dori;
@@ -235,6 +236,7 @@ class PharmacistController extends Controller
            $register->count=$request->post('count');    
            $register->type='kirim';
            $register->plan_id=$request->post('plan_id');
+           $register->pharmacist_id=$pharmacist->id;
            $register->save();
            if($register->errors==null){
                $error=false;
@@ -265,6 +267,7 @@ class PharmacistController extends Controller
            $register->count=-$request->post('count');    
            $register->type='chiqim';
            $register->plan_id=$request->post('plan_id');
+           $register->pharmacist_id=$pharmacist->id;
            $register->save();
            if($register->errors==null){
                $error=false;
@@ -273,6 +276,46 @@ class PharmacistController extends Controller
            else{
                $data=$register->errors;
            }
+        }
+        else{
+            $message='Token xato';
+        }
+        return ['error'=>$error,'message'=>$message,'data'=>$data];
+    }
+    public function actionOutlaylist()
+    {
+        $request=Yii::$app->request;
+        $response=Yii::$app->response;
+        $token=$request->headers->get('token');
+        $pharmacist=Pharmacist::findToken($token);
+        $error=true;
+        $data=[];
+        $message='';
+        if($pharmacist!=null){
+            $error=false;
+            $message='Success';
+            $list=RegisterPharmacistapi::find()->where(['type'=>'chiqim','pharmacist_id'=>$pharmacist->id])->andWhere(['>','date',strtotime(date('Y-m-01 00:00:00'))])->andWhere(['<','date',strtotime('now')])->all();
+            $data=$list;
+        }
+        else{
+            $message='Token xato';
+        }
+        return ['error'=>$error,'message'=>$message,'data'=>$data];
+    }
+    public function actionIncomelist()
+    {
+        $request=Yii::$app->request;
+        $response=Yii::$app->response;
+        $token=$request->headers->get('token');
+        $pharmacist=Pharmacist::findToken($token);
+        $error=true;
+        $data=[];
+        $message='';
+        if($pharmacist!=null){
+            $error=false;
+            $message='Success';
+            $list=RegisterPharmacistapi::find()->where(['type'=>'kirim','pharmacist_id'=>$pharmacist->id])->andWhere(['>','date',strtotime(date('Y-m-01 00:00:00'))])->andWhere(['<','date',strtotime('now')])->all();
+            $data=$list;
         }
         else{
             $message='Token xato';

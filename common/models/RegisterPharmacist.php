@@ -31,7 +31,7 @@ class RegisterPharmacist extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['dori_id', 'count', 'date', 'plan_id'], 'integer'],
+            [['dori_id', 'count', 'date', 'plan_id','pharmacist_id'], 'integer'],
             [['plan_id','count','date','dori_id','type'], 'required'],
             [['comment'], 'string', 'max' => 255],
             [['type'], 'string', 'max' => 11],
