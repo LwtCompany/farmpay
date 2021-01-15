@@ -31,11 +31,14 @@ class Planapi extends Plan
                 return 'http://83.221.167.17:60011/farmpay/admin/image/'.$dori['foto'];
             },
             'residue'=>function($data){
-                $sold=RegisterPharmacist::find()->where(['plan_id'=>$data->id])->andWhere(['<','date',strtotime('now')])->sum('count');
-                if($sold==null){
-                    $sold=0;
-                }
-                return $sold;
+                // $sold=RegisterPharmacist::find()->where(['plan_id'=>$data->id])->andWhere(['<','date',strtotime('now')])->sum('count');
+                // if($sold==null){
+                //     $sold=0;
+                // }
+                // return (double)$sold;
+                $a=$data->count-$data->sold;
+                return $a;
+
             },
             'dori_id',
             'count',
