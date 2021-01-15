@@ -49,7 +49,7 @@ class Dori extends \yii\db\ActiveRecord
     }
     public function getEtalon()
     {
-        return $this->hasMany(Etalon::className(), ['dori_id' => 'id']);
+        return $this->hasMany(Etalonapi::className(), ['dori_id' => 'id']);
     }
     public function getFirm()
     {

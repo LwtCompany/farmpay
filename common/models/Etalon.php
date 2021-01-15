@@ -42,4 +42,8 @@ class Etalon extends \yii\db\ActiveRecord
             'count' => 'Count',
         ];
     }
+    public function getDoriname()
+    {
+        return $this->hasOne(Firm::className(), ['id' => 'dori_id']);
+    }
 }
