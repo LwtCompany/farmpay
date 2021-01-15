@@ -30,16 +30,6 @@ class Planapi extends Plan
                 $dori=DoriApi::findOne($data->dori_id);
                 return 'http://83.221.167.17:60011/farmpay/admin/image/'.$dori['foto'];
             },
-            'residue'=>function($data){
-                // $sold=RegisterPharmacist::find()->where(['plan_id'=>$data->id])->andWhere(['<','date',strtotime('now')])->sum('count');
-                // if($sold==null){
-                //     $sold=0;
-                // }
-                // return (double)$sold;
-                $a=$data->count-$data->sold;
-                return $a;
-
-            },
             'dori_id',
             'count',
             'sold'=>function($data){
@@ -50,6 +40,16 @@ class Planapi extends Plan
                     $sold=$sold * -1;
                 }
                 return $sold;
+            },
+            'residue'=>function($data){
+                // $sold=RegisterPharmacist::find()->where(['plan_id'=>$data->id])->andWhere(['<','date',strtotime('now')])->sum('count');
+                // if($sold==null){
+                //     $sold=0;
+                // }
+                // return (double)$sold;
+                $a=$data->count-$data->sold;
+                return $a;
+
             },
         ];
     }
