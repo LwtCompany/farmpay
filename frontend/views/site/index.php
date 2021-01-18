@@ -1,4 +1,3 @@
-<!-- ***** Welcome Area Start ***** -->
 <section id="home" class="section welcome-area bg-inherit h-100vh overflow-hidden">
             <div class="container h-100">
                 <div class="row justify-content-between align-items-center h-100">

@@ -31,9 +31,10 @@ class RegisterPharmacist extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['dori_id', 'count', 'date', 'plan_id','pharmacist_id'], 'integer'],
+            [['dori_id', 'count', 'date', 'plan_id','pharmacist_id','mounth'], 'integer'],
             [['plan_id','count','date','dori_id','type'], 'required'],
             [['comment'], 'string', 'max' => 255],
+            [['bonus','summa'],'number'],
             [['type'], 'string', 'max' => 11],
         ];
     }
@@ -52,5 +53,9 @@ class RegisterPharmacist extends \yii\db\ActiveRecord
             'plan_id' => 'Plan ID',
             'type' => 'Type',
         ];
+    }
+    public function getDori()
+    {
+        return $this->hasOne(Dori::className(), ['id' => 'dori_id']);
     }
 }
