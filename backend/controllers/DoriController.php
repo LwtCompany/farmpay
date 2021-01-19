@@ -69,10 +69,10 @@ class DoriController extends Controller
         $model = new Dori();
 
         if ($model->load(Yii::$app->request->post())) {
-            $fayl = UploadedFile::getInstance($model,'foto');
-            if($fayl!=null){
-                $fayl->saveAs('image/'.$fayl->baseName.".".$fayl->extension);
-                $model->foto=$fayl->baseName.".".$fayl->extension;     
+            $fayl = UploadedFile::getInstance($model, 'foto');
+            if ($fayl != null) {
+                $fayl->saveAs('image/' . $fayl->baseName . "." . $fayl->extension);
+                $model->foto = $fayl->baseName . "." . $fayl->extension;
             }
             $model->save();
             return $this->redirect('index');
@@ -88,10 +88,10 @@ class DoriController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post())) {
-            $fayl = UploadedFile::getInstance($model,'foto');
-            if($fayl!=null){
-                $test = $fayl->saveAs('image/'.$fayl->baseName.".".$fayl->extension);
-                $model->foto=$fayl->baseName.".".$fayl->extension;
+            $fayl = UploadedFile::getInstance($model, 'foto');
+            if ($fayl != null) {
+                $test = $fayl->saveAs('image/' . $fayl->baseName . "." . $fayl->extension);
+                $model->foto = $fayl->baseName . "." . $fayl->extension;
             }
             $model->save();
             return $this->redirect('index');

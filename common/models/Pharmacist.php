@@ -20,10 +20,13 @@ use Yii;
  * @property string $token
  * @property string $fcm_token
  * @property string $status
+ * @property string $start_time
+ * @property string $end_time
+ * @property string $free_day
  */
 class Pharmacist extends \yii\db\ActiveRecord
 {
-    const ACTIVE='active';
+    const ACTIVE = 'active';
     /**
      * {@inheritdoc}
      */
@@ -39,16 +42,17 @@ class Pharmacist extends \yii\db\ActiveRecord
     {
         return [
             // [['long', 'status'], 'required'],
-            [['sms_code','plan_id'], 'integer'],
+            [['sms_code', 'plan_id'], 'integer'],
             [['firm_name'], 'string', 'max' => 200],
             [['lat', 'long'], 'string', 'max' => 100],
             [['fio', 'fcm_token'], 'string', 'max' => 255],
             [['passport_seria'], 'string', 'max' => 9],
             [['gender'], 'string', 'max' => 10],
             [['phone'], 'string', 'max' => 25],
-            [['phone'],'unique'],
+            [['phone'], 'unique'],
             [['password', 'status'], 'string', 'max' => 30],
             [['token'], 'string', 'max' => 128],
+            [['start_time', 'end_time', 'free_day'], 'string', 'max' => 25]
         ];
     }
 
@@ -71,9 +75,13 @@ class Pharmacist extends \yii\db\ActiveRecord
             'token' => 'Token',
             'fcm_token' => 'Fcm Token',
             'status' => 'Status',
+            'start_time' => 'Start_time',
+            'end_time' => 'End_time',
+            'free_day' => 'Free_day'
         ];
     }
-    public function findToken($token){
+    public function findToken($token)
+    {
         return self::find()->where(['token' => $token])->one();
     }
 }
