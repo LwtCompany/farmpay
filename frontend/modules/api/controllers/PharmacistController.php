@@ -42,6 +42,7 @@ class PharmacistController extends Controller
                 $response->statusCode = 200;
                 if ($pharmacist->sms_code == $request->post('sms_code')) {
                     $pharmacist->attributes = $request->post();
+                    $pharmacist->free_day = 1;
                     $pharmacist->token = Yii::$app->security->generateRandomString(128);
                     $pharmacist->save();
                     if ($pharmacist->errors == null) {
